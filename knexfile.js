@@ -1,87 +1,52 @@
 // Update with your config settings.
 
+require("dotenv").config();
 module.exports = {
-
   development: {
-    client: 'pg',
+    client: "postgresql",
     connection: {
-      database: 'postgres',
-      host: 'localhost',
-      user:     'postgres',
-      password: 'geoseek-admin'
+      database: process.env.DATABASE,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+      port: process.env.DATABASE_PORT
+    },
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
     },
     pool: {
       min: 2,
       max: 10
-    },
-    migrations: {
-      directory: './data/migrations',
-      tableName: 'knex_migrations'
     }
   },
 
-  herokuTest: {
-    client: 'pg',
-    connection: 
-      process.env.DATABASE_URL
-    ,
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      directory: './data/migrations',
-      tableName: 'knex_migrations'
-    }
-  },
-
-  testing:{
-    client: 'pg',
+  staging: {
+    client: "postgresql",
     connection: {
-      database: 'postgres',
-      host: 'localhost',
-      user:     'postgres',
-      password: 'geoseek-admin'
+      database: "postgres",
+      user: "postgres",
+      password: "geoseek-admin",
+      port: "5000"
+    },
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
     },
     pool: {
       min: 2,
       max: 10
-    },
-    migrations: {
-      directory: './data/migrations',
-      tableName: 'knex_migrations'
     }
   },
 
-
-   staging: {
-    client: 'pg',
-    connection: {
-      database: 'd33m38q4mjfc6o',
-      host: 'ec2-54-80-184-43.compute-1.amazonaws.com',
-      user:     'dxwubnggbaufkf',
-      password: '7770b6ce3c6de9f83d6e96e8743fc4dd8029c24f73554f92e36fae0ebe04e7d0'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+  production: {
+    client: "postgresql",
+    connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './data/migrations',
-      tableName: 'knex_migrations'
+      directory: "./data/migrations"
     }
- },
-
- production: {
-  client: 'pg',
-  connection: process.env.DATABASE_URL,
-  migrations: {
-    tableName: 'dbmigrations',
-    directory: './data/migrations'
-  },
-  seeds: { 
-    directory: './data/seeds' 
   }
-}
-
 };
