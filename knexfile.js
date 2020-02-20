@@ -28,7 +28,7 @@ module.exports = {
       database: "postgres",
       user: "postgres",
       password: "geoseek-admin",
-      port: "5000"
+      port: "5500"
     },
     migrations: {
       directory: "./data/migrations"
