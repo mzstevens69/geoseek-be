@@ -24,12 +24,8 @@ module.exports = {
 
   staging: {
     client: "postgresql",
-    connection: {
-      database: "postgres",
-      user: "postgres",
-      password: "geoseek-admin",
-      port: "5500"
-    },
+    connection: process.env.DATABASE_URL,
+    ssl: true,
     migrations: {
       directory: "./data/migrations"
     },
